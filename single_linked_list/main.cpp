@@ -23,6 +23,20 @@ void display_list (Node* head)
     }
 }
 
+bool search_list (Node* head, int data)
+{
+    while (head != nullptr)
+    {
+        if (head->data == data)
+        {
+            return true;
+        }
+
+        head = head->next;
+    }
+
+    return false;
+}
 int main ()
 {
     Node* head = new Node(10);
