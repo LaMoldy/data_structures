@@ -79,6 +79,40 @@ Node* insert_at_tail (Node* head, int data)
     return head;
 }
 
+Node* insert_at (Node* head, int data, int index)
+{
+    if (index < 1)
+    {
+        return head;
+    }
+
+    if (index == 1)
+    {
+        Node* new_node = new Node(data);
+        new_node->next = head;
+        return new_node;
+    }
+
+    Node *current_head = head;
+
+    for (int i = 1; i < index - 1 && current_head != nullptr; i++)
+    {
+        current_head = current_head->next;
+    }
+
+    if (current_head == nullptr)
+    {
+        return head;
+    }
+
+    Node* new_node = new Node(data);
+
+    new_node->next = current_head->next;
+    current_head->next = new_node;
+    
+    return head;
+}
+
 int main ()
 {
     Node* head = new Node(10);
@@ -101,6 +135,9 @@ int main ()
     display_list(head);
 
     head = insert_at_tail(head, 50);
+    display_list(head);
+
+    head = insert_at(head, 25, 4);
     display_list(head);
 
     return 0;
