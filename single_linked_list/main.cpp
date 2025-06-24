@@ -37,6 +37,20 @@ bool search_list (Node* head, int data)
 
     return false;
 }
+
+int size (Node* head)
+{
+    int index_count = 0;
+
+    while (head != nullptr)
+    {
+        index_count++;
+        head = head->next;
+    }
+
+    return index_count;
+}
+
 int main ()
 {
     Node* head = new Node(10);
