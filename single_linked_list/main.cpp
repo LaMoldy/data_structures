@@ -51,6 +51,13 @@ int size (Node* head)
     return index_count;
 }
 
+Node* insert_at_head (Node* head, int data)
+{
+    Node* new_head = new Node(data);
+    new_head ->next = head;
+    return new_head;
+}
+
 int main ()
 {
     Node* head = new Node(10);
@@ -58,5 +65,18 @@ int main ()
     head->next->next = new Node(30);
     head->next->next->next = new Node(40);
 
+    display_list(head);
+
+    bool success = search_list(head, 30);
+    bool fail = search_list(head, 50);
+
+    cout << "Search: " << success << endl;
+    cout << "Search: " << fail << endl;
+
+    int list_size = size(head);
+    cout << "Size: " << list_size << endl;
+
+    head = insert_at_head(head, 5);
+    display_list(head);
     return 0;
 }
