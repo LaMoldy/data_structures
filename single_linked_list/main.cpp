@@ -58,6 +58,27 @@ Node* insert_at_head (Node* head, int data)
     return new_head;
 }
 
+Node* insert_at_tail (Node* head, int data)
+{
+    Node* new_node = new Node(data);
+
+    if (head == nullptr)
+    {
+        return new_node;
+    }
+
+    Node* last = head;
+
+    while (last->next != nullptr)
+    {
+        last = last->next;
+    }
+
+    last->next = new_node;
+
+    return head;
+}
+
 int main ()
 {
     Node* head = new Node(10);
@@ -78,5 +99,9 @@ int main ()
 
     head = insert_at_head(head, 5);
     display_list(head);
+
+    head = insert_at_tail(head, 50);
+    display_list(head);
+
     return 0;
 }
