@@ -208,6 +208,24 @@ Node* modify (Node* head, int data, int index)
     current_head->data = data;
     return head;
 }
+
+Node* reverse_list (Node* head)
+{
+    Node* curr = head;
+    Node* prev = nullptr;
+    Node* next;
+
+    while (curr != nullptr)
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    
+    return prev;
+}
+
 int main ()
 {
     Node* head = new Node(10);
@@ -256,6 +274,9 @@ int main ()
     head = modify(head, 4, 3);
     display_list(head);
 
+    cout << endl << "Reverse:" << endl;
+    head = reverse_list(head);
+    display_list(head);
     
     return 0;
 }
