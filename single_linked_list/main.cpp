@@ -183,6 +183,31 @@ Node* delete_at (Node* head, int index)
 
     return head;
 }
+
+Node* modify (Node* head, int data, int index)
+{
+    
+    if (index < 1)
+    {
+        head->data = data;
+        return head;
+    }
+
+    Node *current_head = head;
+
+    for (int i = 1; i < index - 1 && current_head != nullptr; i++)
+    {
+        current_head = current_head->next;
+    }
+
+    if (current_head == nullptr)
+    {
+        return head;
+    }
+
+    current_head->data = data;
+    return head;
+}
 int main ()
 {
     Node* head = new Node(10);
@@ -226,6 +251,11 @@ int main ()
     cout << endl << "Delete at index 4:" << endl;
     head = delete_at(head, 4);
     display_list(head);
+
+    cout << endl << "Modify at index 4:" << endl;
+    head = modify(head, 4, 3);
+    display_list(head);
+
     
     return 0;
 }
