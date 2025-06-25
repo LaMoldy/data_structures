@@ -127,6 +127,31 @@ Node* delete_at_start (Node* head)
     return head;
 }
 
+Node* delete_at_end (Node* head)
+{
+    if (head == nullptr)
+    {
+        return nullptr;
+    }
+
+    if (head->next == nullptr)
+    {
+        delete head;
+        return nullptr;
+    }
+
+    Node* second_last = head;
+    while (second_last->next->next != nullptr)
+    {
+        second_last= second_last->next;
+    }
+
+    delete (second_last->next);
+    second_last->next = nullptr;
+
+    return head;
+}
+
 int main ()
 {
     Node* head = new Node(10);
@@ -134,8 +159,10 @@ int main ()
     head->next->next = new Node(30);
     head->next->next->next = new Node(40);
 
+    cout << "Display Normal:" << endl;
     display_list(head);
 
+    cout << endl << "Searching:" << endl;
     bool success = search_list(head, 30);
     bool fail = search_list(head, 50);
 
@@ -143,19 +170,28 @@ int main ()
     cout << "Search: " << fail << endl;
 
     int list_size = size(head);
-    cout << "Size: " << list_size << endl;
+    cout << endl << "Size: " << list_size << endl;
 
+    cout << endl << "Insert at front:" << endl;
     head = insert_at_head(head, 5);
     display_list(head);
 
+    cout << endl << "Insert at end:" << endl;
     head = insert_at_tail(head, 50);
     display_list(head);
 
+    cout << endl << "Insert at index 4:" << endl;
     head = insert_at(head, 25, 4);
     display_list(head);
 
+    cout << endl << "Delete at start:" << endl;
     head = delete_at_start(head);
     display_list(head);
+
+    cout << endl << "Delete at end:" << endl;
+    head = delete_at_end(head);
+    display_list(head);
+    
     
     return 0;
 }
