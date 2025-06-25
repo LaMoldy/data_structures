@@ -113,6 +113,20 @@ Node* insert_at (Node* head, int data, int index)
     return head;
 }
 
+Node* delete_at_start (Node* head)
+{
+    if (head == nullptr)
+    {
+        return nullptr;
+    }
+
+    Node* temp = head;
+    head = head->next;
+    delete temp;
+
+    return head;
+}
+
 int main ()
 {
     Node* head = new Node(10);
@@ -140,5 +154,8 @@ int main ()
     head = insert_at(head, 25, 4);
     display_list(head);
 
+    head = delete_at_start(head);
+    display_list(head);
+    
     return 0;
 }
